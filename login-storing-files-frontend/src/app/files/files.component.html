@@ -1,0 +1,41 @@
+<div class="container-fluid" style="padding-left: 10%; padding-top: 2%;">
+    <div class="card text-center" style="width: 70rem;">
+      <br><br>
+      <div style="font-size:x-large; color: blue;">
+        <b>Name: {{name}}</b><br>
+        <b>Email: {{email}}</b>
+    </div>
+    <br><br>
+    <form #myForm="ngForm" (ngSubmit)="savedetails();">
+        
+        <form #form="ngForm" (ngSubmit)="upload()">
+           <label><b>Upload your file:<span style="color:red;">*</span></b></label>&nbsp;
+           <input ng-model="file_upload" name="file" type="file" (change)="fileChange($event)" #fileInput required>
+           <button type="submit" class="btn btn-success" [disabled]="fileInput.value=='' || !form.valid">Upload</button>
+        </form>
+        <br>
+           <button type="submit" class="btn btn-primary" [disabled]="fileInput.value=='' " >Submit</button>
+           
+     </form>
+    <br>
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">File id</th>
+          <th scope="col">File Name</th>
+          <th scope="col">Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let file of files">
+          <td>{{file.id}}</td>
+          <td>{{file.filename}}</td>
+          <td><button class="btn btn-primary" (click)="onClickdownloadfile(file.fileid);">Download</button></td>
+          <!-- <td>{{file.fileid}}</td> -->
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  
+  </div>
